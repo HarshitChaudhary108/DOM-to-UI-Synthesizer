@@ -1,25 +1,39 @@
 "use client";
-import { useState } from 'react';
+
+import { useState } from "react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const menuItems = [
+    "Home",
+    "Love & Relationships",
+    "Past Life",
+    "Dream Meaning",
+    "Angel Numbers",
+  ];
   return (
-    <nav className="sticky top-0 bg-[#080625] text-[#FFFFFF] font-[Inter,sans-serif] z-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-        <div className="flex-shrink-0 text-xl font-bold">SOULSTARR</div>
-        <div className="hidden md:flex space-x-6">
-          <a href="#" className="hover:underline">Home</a>
-          <a href="#" className="hover:underline">Love &amp; Relationships</a>
-          <a href="#" className="hover:underline">Past Life</a>
-          <a href="#" className="hover:underline">Dream Meaning</a>
-          <a href="#" className="hover:underline">Angel Numbers</a>
+    <nav className="fixed top-0 left-0 w-full bg-[#080625]/80 backdrop-blur-sm text-[#ffffff] font-[Inter,ui-serif] z-50">
+      <div className="max-w-7xl mx-auto flex items-center justify-between p-4">
+        <div className="text-xl font-bold">SOULSTARR</div>
+        <div className="hidden sm:flex space-x-6">
+          {menuItems.map((item) => (
+            <a href="#" key={item} className="hover:text-[#9d3f3f] transition-colors">
+              {item}
+            </a>
+          ))}
         </div>
         <button
-          className="md:hidden focus:outline-none"
+          className="sm:hidden focus:outline-none"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
-          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             {open ? (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             ) : (
@@ -29,12 +43,12 @@ export default function Navbar() {
         </button>
       </div>
       {open && (
-        <div className="md:hidden bg-[#080625] px-2 pt-2 pb-3 space-y-1">
-          <a href="#" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-[#1a1a3a]">Home</a>
-          <a href="#" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-[#1a1a3a]">Love &amp; Relationships</a>
-          <a href="#" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-[#1a1a3a]">Past Life</a>
-          <a href="#" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-[#1a1a3a]">Dream Meaning</a>
-          <a href="#" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-[#1a1a3a]">Angel Numbers</a>
+        <div className="sm:hidden bg-[#080625] text-[#ffffff] pb-4">
+          {menuItems.map((item) => (
+            <a href="#" key={item} className="block px-4 py-2 hover:bg-[#9d3f3f]/20">
+              {item}
+            </a>
+          ))}
         </div>
       )}
     </nav>
